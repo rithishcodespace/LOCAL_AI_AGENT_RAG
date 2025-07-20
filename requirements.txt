@@ -4,3 +4,5 @@ langchain-ollama:
   LangChain is a Python (and JavaScript) library that helps developers build apps powered by language models.
 langchain-chroma:(ChromaDB)
   ChromaDB is an open-source vector database used for semantic search and RAG (Retrieval Augmented Generation).
+models used:
+  we are using llama3.2 and embedding model as mxbai-embed-large
