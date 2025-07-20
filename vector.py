@@ -1,6 +1,6 @@
 # here we are vectorising our csv file making it into the form of list and storing in the desired file path using chroma db
 from langchain_ollama import OllamaEmbeddings
-from langchain_chroma import langchain_chroma
+from langchain_chroma import Chroma 
 from langchain_core.documents import Document
 import os
 import pandas as pd
@@ -17,8 +17,8 @@ if add_documents:
 
     for i, row in df.iterrows():
         document = Document(
-            page_content = row["title"] + " " + row["Review"],
-            metadata = {"rating": row["rating"], "date": row["Date"]},
+            page_content = row["Title"] + " " + row["Review"],
+            metadata = {"rating": row["Rating"], "date": row["Date"]},
             id = str(i)
         )
         ids.append(str(i))
@@ -26,9 +26,13 @@ if add_documents:
 
 vector_store = Chroma(
     collection_name = "restaurant_reviews",
-    persistent_directory = db_location,
+    persist_directory = db_location,
     embedding_function = embeddings
 )
 
 if add_documents:
     vector_store.add_documents(documents = documents, ids = ids)
+
+retriever = vector_store.as_retriever( # connecting the chroma db to our llm
+   searchKeywordAurguments = {"k":5} # it takes 5 relevant reviews based on our query and passess to our llm
+)
