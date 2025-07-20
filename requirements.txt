@@ -1,3 +1,6 @@
-langchain
-langchain-ollama
-langchain-chroma
+langchain:
+  Ollama is a tool that lets you run large language models (LLMs) like LLaMA, Mistral, Code Llama, etc. locally on your machine(using our own hardware) — no internet or OpenAI needed, and rather than using openAI's api key
+langchain-ollama:
+  LangChain is a Python (and JavaScript) library that helps developers build apps powered by language models.
+langchain-chroma:(ChromaDB)
+  ChromaDB is an open-source vector database used for semantic search and RAG (Retrieval Augmented Generation).
